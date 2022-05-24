@@ -19,11 +19,12 @@ export default function Home() {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const token = getAccessToken(req, res)
-  console.log(token)
+export const getServerSideProps = withPageAuthRequired({
+  getServerSideProps: async ({ req, res }) => {
+    console.log(getAccessToken(req, res))
 
-  return {
-    props: {}
+    return {
+      props: {}
+    }
   }
-}
+})
